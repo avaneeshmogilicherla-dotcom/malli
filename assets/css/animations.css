@@ -1,0 +1,191 @@
+/* ============================================
+   MALLI — Utility Animations & Effects
+   ============================================ */
+
+/* ---------- Parallax Layers ---------- */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ---------- Magnetic Hover Effect ---------- */
+.magnetic-btn {
+  transition: transform 0.3s var(--ease-luxury);
+}
+
+/* ---------- Text Splitting / Reveal ---------- */
+.split-text .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.6s var(--ease-luxury);
+}
+
+.split-text.visible .char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Image Reveal ---------- */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-reveal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--dark-bg);
+  transform-origin: right;
+  transition: transform 1.2s var(--ease-luxury);
+}
+
+.img-reveal.visible::after {
+  transform: scaleX(0);
+}
+
+/* ---------- Gold shimmer effect ---------- */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 168, 98, 0.1),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ---------- Breathing glow ---------- */
+.glow {
+  animation: breathingGlow 4s ease-in-out infinite;
+}
+
+@keyframes breathingGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 168, 98, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(212, 168, 98, 0.15); }
+}
+
+/* ---------- Counter animation ---------- */
+.counter {
+  display: inline-block;
+}
+
+/* ---------- Grain overlay ---------- */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ---------- Smooth fade transition between pages ---------- */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.page-transition .curtain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--champagne-gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+/* ---------- Flower decoration keyframes ---------- */
+@keyframes floatPetal {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.15;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ---------- Hover lift effect ---------- */
+.hover-lift {
+  transition: transform 0.5s var(--ease-luxury), box-shadow 0.5s;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Border drawing animation ---------- */
+.draw-border {
+  position: relative;
+}
+
+.draw-border::before,
+.draw-border::after {
+  content: '';
+  position: absolute;
+  transition: all 0.5s var(--ease-luxury);
+}
+
+.draw-border::before {
+  top: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--champagne-gold);
+}
+
+.draw-border::after {
+  bottom: 0; right: 0;
+  width: 0; height: 1px;
+  background: var(--champagne-gold);
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+  width: 100%;
+}
+
+/* ---------- Stagger reveal for grid items ---------- */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s var(--ease-luxury);
+}
+
+.stagger-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dynamic delays set by JS */
